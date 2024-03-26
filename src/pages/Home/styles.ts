@@ -2,8 +2,16 @@ import styled from "styled-components"
 
 export const HeroContainer = styled.div`
 display: flex;
-justify-content: center;
+justify-content: space-between;
 align-items: center;
+gap: 5.6rem;
+padding: 9rem 0;
+
+//!FIX
+@media (max-width: 768px) {
+  flex-direction: column-reverse;
+  justify-content: center;
+}
 
 .hero-info {
   & h1 {
@@ -29,29 +37,34 @@ align-items: center;
 }
 
 .hero-tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: start;
+}
+`
 
+interface HeroTagProps {
+  variant: 'yellow-dark' | 'yellow' | 'base-text' | 'purple'
+}
 
-  .hero-tag {
+export const HeroTag = styled.div<HeroTagProps>`
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1.2rem;
 
-    margin-bottom: 2rem;
-    margin-right: 4rem;
+    &:nth-child(1),
+    &:nth-child(2) {
+      margin-bottom: 2rem;
+    }
+    
 
     & svg {
-      background-color: red;
+      background-color: ${ props => props.theme[props.variant]};
       color: ${ props => props.theme['white']};
 
       border-radius: 100%;
       padding: 8px;
       box-sizing: content-box;
     }
-  }
-}
 `

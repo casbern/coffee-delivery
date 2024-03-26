@@ -1,4 +1,4 @@
-import { HeroContainer } from "./styles"
+import { HeroContainer, HeroTag } from "./styles"
 import heroImage from "../../assets/heroImage.png"
 
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react"
@@ -17,25 +17,26 @@ export function Home() {
         </p>
 
         <div className="hero-tags">
-          <div className="hero-tag">
-            <ShoppingCart size={16} weight="fill" />
+          <HeroTag variant="yellow-dark">
+            <ShoppingCart size={16} weight="fill"/>
             <span>Compra simples e segura</span>
-          </div>
+          </HeroTag>
 
-          <div className="hero-tag">
+          <HeroTag variant="base-text">
             <Package size={16} weight="fill" />
             <span>Embalagem mantém o café intacto</span>
-          </div> 
+          </HeroTag> 
 
-          <div className="hero-tag">
+        
+          <HeroTag variant="yellow">
             <Timer size={16} weight="fill" />
             <span>Entrega rápida e rastreada</span>
-          </div>
+          </HeroTag>
 
-          <div className="hero-tag">
+          <HeroTag variant="purple">
             <Coffee size={16} weight="fill" />
             <span>O café chega fresquinho até você</span>
-          </div>
+          </HeroTag>
         </div>
       </div>
       <img src={heroImage} alt="" />
