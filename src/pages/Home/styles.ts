@@ -7,12 +7,6 @@ align-items: center;
 gap: 5.6rem;
 padding: 9rem 0;
 
-//!FIX
-@media (max-width: 768px) {
-  flex-direction: column-reverse;
-  justify-content: center;
-}
-
 .hero-info {
   & h1 {
     color: ${ props => props.theme["base-title"]};
@@ -41,6 +35,30 @@ padding: 9rem 0;
   grid-template-columns: repeat(2, 1fr);
   justify-items: start;
 }
+
+@media (max-width: 425px) {
+
+  img {
+    width: 40rem;
+  }
+
+  .hero-info {
+    & p {
+      margin-bottom: 4rem;
+    }
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  flex-direction: column-reverse;
+  align-items: center;
+}
 `
 
 interface HeroTagProps {
@@ -52,11 +70,12 @@ export const HeroTag = styled.div<HeroTagProps>`
     justify-content: center;
     align-items: center;
     gap: 1.2rem;
+    margin-bottom: 1rem;
 
-    &:nth-child(1),
+    /* &:nth-child(1),
     &:nth-child(2) {
       margin-bottom: 2rem;
-    }
+    } */
     
 
     & svg {
