@@ -1,7 +1,8 @@
-import { HeroContainer, HeroTag } from "./styles"
+import { HeroContainer, HeroTag, MainContainer } from "./styles"
 import heroImage from "../../assets/heroImage.png"
 
 import { Coffee, Package, ShoppingCart, Timer } from "phosphor-react"
+import { Card } from "../../components/Card"
 
 export function Home() {
   return (
@@ -41,6 +42,18 @@ export function Home() {
       </div>
       <img src={heroImage} alt="" />
     </HeroContainer>
+
+    <MainContainer>
+      <h2>Nossos Cafés</h2>
+
+      <div className="coffee-list">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
+    </MainContainer>
     </>
   )
 }

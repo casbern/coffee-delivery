@@ -1,8 +1,7 @@
-import { HeaderContainer, LocationButton } from "./styles"
-import {MapPin} from "phosphor-react"
-
-
 import logo from "../../assets/logo.png"
+import {MapPin} from "phosphor-react"
+import { HeaderContainer, LocationButton } from "./styles"
+
 import { Cart } from "../Cart"
 
 export function Header() {

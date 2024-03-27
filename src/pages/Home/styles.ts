@@ -70,13 +70,7 @@ export const HeroTag = styled.div<HeroTagProps>`
     justify-content: center;
     align-items: center;
     gap: 1.2rem;
-    margin-bottom: 1rem;
-
-    /* &:nth-child(1),
-    &:nth-child(2) {
-      margin-bottom: 2rem;
-    } */
-    
+    margin-bottom: 2rem;
 
     & svg {
       background-color: ${ props => props.theme[props.variant]};
@@ -86,4 +80,23 @@ export const HeroTag = styled.div<HeroTagProps>`
       padding: 8px;
       box-sizing: content-box;
     }
+`
+
+export const MainContainer = styled.main`
+  h2 {
+    font-family: "Baloo 2", sans-serif;
+    color: ${ props => props.theme['base-subtitle']};
+    font-size: 3.2rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 130%;
+
+    margin-bottom: 5rem;
+  }
+
+  .coffee-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3.2rem;
+  }
 `
