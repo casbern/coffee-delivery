@@ -3,6 +3,7 @@ import { ShoppingCart } from "phosphor-react";
 
 
 import american from "../../assets/american.png"
+import { Counter } from "../Counter";
 
 export function Card() {
   return (
@@ -20,7 +21,7 @@ export function Card() {
         <span>R$ <strong>9,90</strong></span>
 
         <div className="actions">
-          <div>counter</div>
+          <Counter />
           <button>
             <ShoppingCart size={22} weight="fill" />
           </button>

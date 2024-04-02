@@ -64,4 +64,42 @@ align-items: center;
   }
 `
 
-export const ProductItem = styled.div``
+export const ProductItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 216px;
+  margin: 3.6rem auto 0;
+
+  span {
+    color: ${ props => props.theme["base-text"]};
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+  }
+
+  strong {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 2.4rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 130%;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+
+    button {
+      padding: .8rem;
+      border-radius: 6px;
+      border: none;
+      background: ${ props => props.theme["purple-dark"]};
+      color: ${ props => props.theme.white};
+      cursor: pointer;
+    }
+  }
+`

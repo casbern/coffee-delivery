@@ -83,6 +83,11 @@ export const HeroTag = styled.div<HeroTagProps>`
 `
 
 export const MainContainer = styled.main`
+  display: flex;
+  flex-direction: column;
+  
+  margin-bottom: 15.7rem;
+
   h2 {
     font-family: "Baloo 2", sans-serif;
     color: ${ props => props.theme['base-subtitle']};
@@ -98,5 +103,11 @@ export const MainContainer = styled.main`
     display: flex;
     flex-wrap: wrap;
     gap: 3.2rem;
+  }
+
+  @media (max-width: 1024px) {
+    .coffee-list {
+      justify-content: center;
+    }
   }
 `
