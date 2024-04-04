@@ -104,17 +104,17 @@ export function Checkout() {
 
           <div className="summary-payment">
             <div>
-              <p>Total de itens</p>
+              <span>Total de itens</span>
               <span>R$ 29,70</span>
             </div>
 
             <div>
-              <p>Entrega</p>
+              <span>Entrega</span>
               <span>R$ 3,50</span>
             </div>
 
-            <div>
-              <p>Total</p>
+            <div className="total">
+              <span>Total</span>
               <span>R$ 33,20</span>
             </div>
           </div>
