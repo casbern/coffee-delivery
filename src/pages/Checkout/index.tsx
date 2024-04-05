@@ -1,5 +1,5 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, Trash } from "phosphor-react";
-import { MainContainer, OrderDetails, OrderSummary } from "./styles";
+import { MainContainer, OrderDetails, OrderDetailsHeader, OrderSummary } from "./styles";
 
 import american from "../../assets/american.png"
 import { Counter } from "../../components/Counter";
@@ -12,13 +12,13 @@ export function Checkout() {
         <h1>Complete seu pedido</h1>
 
         <div className="order-address">
-          <header>
+          <OrderDetailsHeader>
             <MapPinLine size={22} />
             <div>
               <p>Endereço de Entrega</p>
               <p>Informe o endereço onde deseja receber seu pedido</p>
             </div>
-          </header>
+          </OrderDetailsHeader>
 
           <form>
             <input type="number" placeholder="CEP"/>
@@ -37,13 +37,13 @@ export function Checkout() {
         </div>
 
         <div className="order-payment">
-          <header>
+          <OrderDetailsHeader>
             <CurrencyDollar size={22} />
             <div>
               <p>Pagamento</p>
               <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
             </div>
-          </header>
+          </OrderDetailsHeader>
 
           <div className="payment-buttons">
             

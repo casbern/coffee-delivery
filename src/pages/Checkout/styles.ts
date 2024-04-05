@@ -12,6 +12,33 @@ export const MainContainer = styled.div`
   }
 `
 
+export const OrderDetailsHeader = styled.header`
+
+  display: flex;
+  gap: 8px;
+
+  svg {
+    color: ${ props => props.theme['yellow-dark']};
+  }
+
+  div p:first-child {
+    color: ${ props => props.theme["base-subtitle"]};
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+  }
+
+  div p:nth-child(2) {
+    color: ${ props => props.theme["base-text"]};
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+  }
+  
+`
+
+
 export const OrderDetails = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,29 +63,6 @@ export const OrderDetails = styled.div`
     border-radius: 6px;
     background: ${ props => props.theme["base-card"]};
 
-    header {
-      display: flex;
-      gap: 8px;
-
-      svg {
-        color: ${ props => props.theme['yellow-dark']};
-      }
-
-      div p:first-child {
-        color: ${ props => props.theme["base-subtitle"]};
-        font-style: normal;
-        font-weight: 400;
-        line-height: 130%;
-      }
-
-      div p:nth-child(2) {
-        color: ${ props => props.theme["base-text"]};
-        font-size: 1.4rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 130%;
-      }
-  }
 
   form {
     display: flex;
@@ -106,30 +110,6 @@ export const OrderDetails = styled.div`
     padding: 4rem;
     border-radius: 6px;
     background: ${ props => props.theme["base-card"]};
-  }
-
-  header {
-      display: flex;
-      gap: 8px;
-
-      svg {
-        color: ${ props => props.theme['yellow-dark']};
-      }
-
-      div p:first-child {
-        color: ${ props => props.theme["base-subtitle"]};
-        font-style: normal;
-        font-weight: 400;
-        line-height: 130%;
-      }
-
-      div p:nth-child(2) {
-        color: ${ props => props.theme["base-text"]};
-        font-size: 1.4rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 130%;
-      }
   }
 
   .payment-buttons {
