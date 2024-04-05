@@ -37,9 +37,8 @@ padding: 9rem 0;
 }
 
 @media (max-width: 425px) {
-
   img {
-    width: 40rem;
+    width: 350px;
   }
 
   .hero-info {
