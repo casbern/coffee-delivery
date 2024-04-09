@@ -1,9 +1,8 @@
-import { CardContainer, Info, ProductItem, Tag } from "./styles"
-import { ShoppingCart } from "phosphor-react";
+import { CardContainer, Info, ProductItem, Tag } from './styles'
+import { ShoppingCart } from 'phosphor-react'
 
-
-import american from "../../assets/american.png"
-import { Counter } from "../Counter";
+import american from '../../assets/american.png'
+import { Counter } from '../Counter'
 
 export function Card() {
   return (
@@ -18,7 +17,9 @@ export function Card() {
       </Info>
 
       <ProductItem>
-        <span>R$ <strong>9,90</strong></span>
+        <span>
+          R$ <strong>9,90</strong>
+        </span>
 
         <div className="actions">
           <Counter />

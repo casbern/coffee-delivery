@@ -1,8 +1,8 @@
-import { Minus, Plus } from "phosphor-react";
-import { CounterContainer } from "./styles";
+import { Minus, Plus } from 'phosphor-react'
+import { CounterContainer } from './styles'
 
 export function Counter() {
-  return(
+  return (
     <CounterContainer>
       <Minus size={14} />
       <span>0</span>

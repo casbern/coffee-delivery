@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const MainContainer = styled.main`
   display: flex;
@@ -8,36 +8,32 @@ export const MainContainer = styled.main`
 
   @media (max-width: 768px) {
     flex-direction: column;
-    
   }
 `
 
 export const OrderDetailsHeader = styled.header`
-
   display: flex;
   gap: 8px;
 
   svg {
-    color: ${ props => props.theme['yellow-dark']};
+    color: ${(props) => props.theme['yellow-dark']};
   }
 
   div p:first-child {
-    color: ${ props => props.theme["base-subtitle"]};
+    color: ${(props) => props.theme['base-subtitle']};
     font-style: normal;
     font-weight: 400;
     line-height: 130%;
   }
 
   div p:nth-child(2) {
-    color: ${ props => props.theme["base-text"]};
+    color: ${(props) => props.theme['base-text']};
     font-size: 1.4rem;
     font-style: normal;
     font-weight: 400;
     line-height: 130%;
   }
-  
 `
-
 
 export const OrderDetails = styled.div`
   display: flex;
@@ -45,7 +41,7 @@ export const OrderDetails = styled.div`
   gap: 12px;
 
   h1 {
-    font-family: "Balooo 2", sans-serif;
+    font-family: 'Balooo 2', sans-serif;
     font-size: 1.8rem;
     font-style: normal;
     font-weight: 700;
@@ -61,46 +57,44 @@ export const OrderDetails = styled.div`
     padding: 4rem;
 
     border-radius: 6px;
-    background: ${ props => props.theme["base-card"]};
+    background: ${(props) => props.theme['base-card']};
 
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      align-self: stretch;
+      gap: 16px;
 
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    align-self: stretch;
-    gap: 16px;
+      input {
+        padding: 1.2rem;
+        border-radius: 4px;
+        border: 1px solid ${(props) => props.theme['base-button']};
+        background: ${(props) => props.theme['base-input']};
+        width: 100%;
 
-    input {
-      padding: 1.2rem;
-      border-radius: 4px;
-      border: 1px solid ${ props => props.theme["base-button"]};
-      background: ${ props => props.theme["base-input"]};
-      width: 100%;
+        &::placeholder {
+          color: ${(props) => props.theme['base-label']};
+          font-size: 1.4rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 130%;
+        }
 
-
-      &::placeholder {
-        color: ${ props => props.theme["base-label"]};
-        font-size: 1.4rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 130%;
+        &[placeholder='CEP'] {
+          width: 200px;
+        }
       }
 
-      &[placeholder="CEP"] {
-        width: 200px;
-      }
-    }
-
-    div {
+      div {
         display: flex;
         gap: 12px;
         width: 100%;
       }
+    }
   }
-}
 
-.order-payment {
+  .order-payment {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -109,7 +103,7 @@ export const OrderDetails = styled.div`
 
     padding: 4rem;
     border-radius: 6px;
-    background: ${ props => props.theme["base-card"]};
+    background: ${(props) => props.theme['base-card']};
   }
 
   .payment-buttons {
@@ -119,52 +113,51 @@ export const OrderDetails = styled.div`
     gap: 12px;
 
     @media (max-width: 425px) {
-    width: 100%;
-    flex-direction: column;
+      width: 100%;
+      flex-direction: column;
     }
 
     button {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 1.6rem;
-    width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 1.6rem;
+      width: 100%;
 
-    color: ${ props => props.theme["base-text"]};
-    font-size: 1.2rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 160%;
-    text-transform: uppercase;
+      color: ${(props) => props.theme['base-text']};
+      font-size: 1.2rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 160%;
+      text-transform: uppercase;
 
-    border: 1px solid ${ props => props.theme["base-button"]};
-    border-radius: 6px;
-    background: ${ props => props.theme["base-button"]};
-    cursor: pointer;
+      border: 1px solid ${(props) => props.theme['base-button']};
+      border-radius: 6px;
+      background: ${(props) => props.theme['base-button']};
+      cursor: pointer;
 
-    &:hover {
-      border: 1px solid ${ props => props.theme["purple"]};
-      background: ${ props => props.theme["purple-light"]};
-    }
+      &:hover {
+        border: 1px solid ${(props) => props.theme.purple};
+        background: ${(props) => props.theme['purple-light']};
+      }
 
-    svg {
-      color: ${ props => props.theme.purple};
+      svg {
+        color: ${(props) => props.theme.purple};
+      }
     }
   }
-}
 `
 
 export const OrderSummary = styled.div`
-
   h1 {
-      font-family: "Balooo 2", sans-serif;
-      font-size: 1.8rem;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 130%;
+    font-family: 'Balooo 2', sans-serif;
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
 
-      margin-bottom: 1.2rem;
-    }
+    margin-bottom: 1.2rem;
+  }
 
   .summary {
     display: flex;
@@ -175,18 +168,18 @@ export const OrderSummary = styled.div`
     padding: 4rem;
 
     border-radius: 6px 44px;
-    background: ${ props => props.theme["base-card"]};
+    background: ${(props) => props.theme['base-card']};
 
     @media (max-width: 768px) {
-    width: 100%;
-    padding: 4rem 2rem;
-  }
-    
+      width: 100%;
+      padding: 4rem 2rem;
+    }
+
     /* &::after {
         content: "";
         height: 0;
         width: 100%;
-        border-bottom: 1px solid ${ props => props.theme["base-button"]};
+        border-bottom: 1px solid ${(props) => props.theme['base-button']};
         margin-bottom: 2.4rem;
       } */
 
@@ -195,10 +188,9 @@ export const OrderSummary = styled.div`
       flex-direction: row;
       justify-content: space-between;
       width: 100%;
-      padding: .2rem;
+      padding: 0.2rem;
 
-      border-bottom: 1px solid ${ props => props.theme["base-button"]};
-
+      border-bottom: 1px solid ${(props) => props.theme['base-button']};
 
       img {
         width: 64px;
@@ -212,13 +204,12 @@ export const OrderSummary = styled.div`
         flex: 1;
         margin-bottom: 2.4rem;
 
-
         p {
-          color: ${ props => props.theme["base-subtitle"]};
+          color: ${(props) => props.theme['base-subtitle']};
           font-style: normal;
           font-weight: 400;
           line-height: 130%;
-          margin-bottom: .8rem;
+          margin-bottom: 0.8rem;
         }
 
         .summary-action {
@@ -226,7 +217,7 @@ export const OrderSummary = styled.div`
           gap: 8px;
 
           svg {
-            color: ${ props => props.theme.purple};
+            color: ${(props) => props.theme.purple};
           }
 
           button {
@@ -234,15 +225,15 @@ export const OrderSummary = styled.div`
             align-items: center;
             justify-content: center;
             gap: 4px;
-            padding: 0 .8rem;
+            padding: 0 0.8rem;
             /* height: 32px; */
 
-            border: 1px solid ${ props => props.theme["base-button"]};
+            border: 1px solid ${(props) => props.theme['base-button']};
             border-radius: 6px;
-            background: ${ props => props.theme["base-button"]};
+            background: ${(props) => props.theme['base-button']};
             cursor: pointer;
 
-            color: ${ props => props.theme["base-text"]};
+            color: ${(props) => props.theme['base-text']};
             font-size: 1.2rem;
             font-style: normal;
             font-weight: 400;
@@ -254,8 +245,8 @@ export const OrderSummary = styled.div`
             }
 
             &:hover {
-              border: 1px solid ${ props => props.theme["purple"]};
-              background: ${ props => props.theme["purple-light"]};
+              border: 1px solid ${(props) => props.theme.purple};
+              background: ${(props) => props.theme['purple-light']};
             }
           }
         }
@@ -272,7 +263,7 @@ export const OrderSummary = styled.div`
     gap: 12px;
 
     & div:last-child span {
-      color: ${ props => props.theme["base-subtitle"]};
+      color: ${(props) => props.theme['base-subtitle']};
       text-align: right;
 
       font-size: 2rem;
@@ -282,20 +273,20 @@ export const OrderSummary = styled.div`
     }
 
     & div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-self: stretch;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-self: stretch;
 
-    & span {
-      color: ${ props => props.theme["base-text"]};
-      text-align: right;
+      & span {
+        color: ${(props) => props.theme['base-text']};
+        text-align: right;
 
-      font-size: 1.4rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 130%;
-    }
+        font-size: 1.4rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 130%;
+      }
     }
   }
 
@@ -304,14 +295,14 @@ export const OrderSummary = styled.div`
     justify-content: center;
     align-content: center;
     gap: 4px;
-    background: ${ props => props.theme.yellow};
+    background: ${(props) => props.theme.yellow};
     width: 100%;
 
-    padding: 1.2rem .8rem;
+    padding: 1.2rem 0.8rem;
     border-radius: 6px;
-    border: 1px solid ${ props => props.theme.yellow};
+    border: 1px solid ${(props) => props.theme.yellow};
 
-    color: ${ props => props.theme.white};
+    color: ${(props) => props.theme.white};
     font-size: 1.4rem;
     font-style: normal;
     font-weight: 700;
@@ -320,8 +311,8 @@ export const OrderSummary = styled.div`
     cursor: pointer;
 
     &:hover {
-      background: ${ props => props.theme["yellow-dark"]};
-      transition: background-color .2s;
+      background: ${(props) => props.theme['yellow-dark']};
+      transition: background-color 0.2s;
     }
   }
 `

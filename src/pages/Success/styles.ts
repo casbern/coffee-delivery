@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const MainContainer = styled.main`
   display: flex;
@@ -27,8 +27,8 @@ export const MainContainer = styled.main`
 
   .order-confirmation {
     h1 {
-      color: ${ props => props.theme["yellow-dark"]};
-      font-family: "Baloo 2", sans-serif;
+      color: ${(props) => props.theme['yellow-dark']};
+      font-family: 'Baloo 2', sans-serif;
       font-size: 3.2rem;
       font-style: normal;
       font-weight: 800;
@@ -36,7 +36,7 @@ export const MainContainer = styled.main`
     }
 
     h2 {
-      color: ${ props => props.theme["base-subtitle"]};
+      color: ${(props) => props.theme['base-subtitle']};
       font-size: 2rem;
       font-style: normal;
       font-weight: 400;
@@ -55,10 +55,9 @@ export const MainContainer = styled.main`
     max-width: 526px;
     padding: 4rem;
     border-radius: 6px 36px;
-    border: 1px solid ${ props => props.theme.yellow};
+    border: 1px solid ${(props) => props.theme.yellow};
 
     .order-details {
-      
     }
   }
 `
@@ -72,10 +71,10 @@ export const OrderDetails = styled.div<OrderDetailsProps>`
   gap: 12px;
 
   & svg {
-    padding: .8rem;
+    padding: 0.8rem;
     border-radius: 100px;
-    background-color: ${ props => props.theme[props.variant]};
-    color: ${ props => props.theme.white};
+    background-color: ${(props) => props.theme[props.variant]};
+    color: ${(props) => props.theme.white};
     box-sizing: content-box;
   }
 `

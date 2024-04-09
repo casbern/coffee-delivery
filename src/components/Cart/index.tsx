@@ -1,5 +1,5 @@
-import { ShoppingCart } from "phosphor-react";
-import { CartButton } from "./styles";
+import { ShoppingCart } from 'phosphor-react'
+import { CartButton } from './styles'
 
 export function Cart() {
   return (

@@ -1,9 +1,20 @@
-import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, Trash } from "phosphor-react";
-import { MainContainer, OrderDetails, OrderDetailsHeader, OrderSummary } from "./styles";
+import {
+  Bank,
+  CreditCard,
+  CurrencyDollar,
+  MapPinLine,
+  Money,
+  Trash,
+} from 'phosphor-react'
+import {
+  MainContainer,
+  OrderDetails,
+  OrderDetailsHeader,
+  OrderSummary,
+} from './styles'
 
-import american from "../../assets/american.png"
-import { Counter } from "../../components/Counter";
-
+import american from '../../assets/american.png'
+import { Counter } from '../../components/Counter'
 
 export function Checkout() {
   return (
@@ -21,16 +32,16 @@ export function Checkout() {
           </OrderDetailsHeader>
 
           <form>
-            <input type="number" placeholder="CEP"/>
-            <input type="text" placeholder="Rua"/>
+            <input type="number" placeholder="CEP" />
+            <input type="text" placeholder="Rua" />
             <div>
-              <input type="number" placeholder="Número"/>
-              <input type="text" placeholder="Complemento"/>
+              <input type="number" placeholder="Número" />
+              <input type="text" placeholder="Complemento" />
             </div>
 
             <div>
-              <input type="text" placeholder="Bairro"/>
-              <input type="text" placeholder="Cidade"/>
+              <input type="text" placeholder="Bairro" />
+              <input type="text" placeholder="Cidade" />
               <input type="text" placeholder="UF" />
             </div>
           </form>
@@ -41,29 +52,27 @@ export function Checkout() {
             <CurrencyDollar size={22} />
             <div>
               <p>Pagamento</p>
-              <p>O pagamento é feito na entrega. Escolha a forma que deseja pagar</p>
+              <p>
+                O pagamento é feito na entrega. Escolha a forma que deseja pagar
+              </p>
             </div>
           </OrderDetailsHeader>
 
           <div className="payment-buttons">
-            
             <button type="submit">
               <CreditCard size={16} />
               cartão de crédito
             </button>
-            
-            
-            <button type="submit">
-              <Bank size={16} />              
-              cartão de débito
-            </button>
-            
 
             <button type="submit">
-              <Money size={16} /> 
-              dinheiro            
+              <Bank size={16} />
+              cartão de débito
             </button>
-            
+
+            <button type="submit">
+              <Money size={16} />
+              dinheiro
+            </button>
           </div>
         </div>
       </OrderDetails>
@@ -84,7 +93,9 @@ export function Checkout() {
                 </button>
               </div>
             </div>
-              <span><strong>R$ 9,90</strong></span>
+            <span>
+              <strong>R$ 9,90</strong>
+            </span>
           </div>
 
           <div className="summary-order">
@@ -99,7 +110,9 @@ export function Checkout() {
                 </button>
               </div>
             </div>
-              <span><strong>R$ 9,90</strong></span>
+            <span>
+              <strong>R$ 9,90</strong>
+            </span>
           </div>
 
           <div className="summary-payment">

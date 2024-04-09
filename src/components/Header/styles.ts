@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -21,9 +21,9 @@ export const LocationButton = styled.button`
 
   border-radius: 6px;
   border: none;
-  background-color: ${ props => props.theme['purple-light']};
+  background-color: ${(props) => props.theme['purple-light']};
 
-  color: ${ props => props.theme['purple-dark']};
+  color: ${(props) => props.theme['purple-dark']};
   font-size: 1.4rem;
   font-style: normal;
   font-weight: 400;
@@ -31,4 +31,3 @@ export const LocationButton = styled.button`
 
   cursor: pointer;
 `
-

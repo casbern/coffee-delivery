@@ -1,8 +1,8 @@
-import logo from "../../assets/logo.svg"
-import {MapPin} from "phosphor-react"
-import { HeaderContainer, LocationButton } from "./styles"
+import logo from '../../assets/logo.svg'
+import { MapPin } from 'phosphor-react'
+import { HeaderContainer, LocationButton } from './styles'
 
-import { Cart } from "../Cart"
+import { Cart } from '../Cart'
 
 export function Header() {
   return (
@@ -11,7 +11,7 @@ export function Header() {
 
       <div className="actions">
         <LocationButton>
-          <MapPin size={22} weight="fill"/>
+          <MapPin size={22} weight="fill" />
           <span>Porto Alegre, RS</span>
         </LocationButton>
 

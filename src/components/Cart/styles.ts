@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const CartButton = styled.button`
   display: flex;
@@ -9,8 +9,8 @@ export const CartButton = styled.button`
 
   border-radius: 6px;
   border: none;
-  background-color: ${ props => props.theme['yellow-light']};
-  color: ${ props => props.theme['yellow-dark']};
+  background-color: ${(props) => props.theme['yellow-light']};
+  color: ${(props) => props.theme['yellow-dark']};
 
   cursor: pointer;
 `
