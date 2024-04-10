@@ -12,7 +12,7 @@ export const HeaderContainer = styled.header`
   }
 `
 
-export const LocationButton = styled.button`
+export const Location = styled.div`
   display: flex;
   padding: 8px;
   justify-content: center;
@@ -28,6 +28,4 @@ export const LocationButton = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: 130%;
-
-  cursor: pointer;
 `
