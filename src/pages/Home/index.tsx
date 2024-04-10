@@ -4,7 +4,30 @@ import heroImage from '../../assets/heroImage.png'
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { Card } from '../../components/Card'
 
+import { api } from '../../lib/axios'
+import { useEffect, useState } from 'react'
+
+export interface ProductProps {
+  id?: number
+  image: string
+  tags: string[]
+  name: string
+  description: string
+  price: number
+}
+
 export function Home() {
+  const [products, setProducts] = useState([])
+
+  async function getAllProducts() {
+    const response = await api.get('/products')
+    setProducts(response.data)
+  }
+
+  useEffect(() => {
+    getAllProducts()
+  }, [])
+
   return (
     <>
       <HeroContainer>
@@ -44,11 +67,16 @@ export function Home() {
         <h2>Nossos Cafés</h2>
 
         <div className="coffee-list">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {products.map((product: ProductProps) => (
+            <Card
+              key={product.id}
+              image={product.image}
+              tags={product.tags}
+              name={product.name}
+              description={product.description}
+              price={product.price}
+            />
+          ))}
         </div>
       </MainContainer>
     </>

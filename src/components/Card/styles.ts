@@ -24,6 +24,7 @@ export const CardContainer = styled.div`
 
 export const Tag = styled.span`
   padding: 4px 8px;
+  margin-right: 0.4rem;
 
   border-radius: 100px;
   background: ${(props) => props.theme['yellow-light']};
