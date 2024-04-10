@@ -3,11 +3,14 @@ import { MapPin } from 'phosphor-react'
 import { HeaderContainer, LocationButton } from './styles'
 
 import { Cart } from '../Cart'
+import { NavLink } from 'react-router-dom'
 
 export function Header() {
   return (
     <HeaderContainer>
-      <img src={logo} alt="" />
+      <NavLink to={'/'}>
+        <img src={logo} alt="" />
+      </NavLink>
 
       <div className="actions">
         <LocationButton>
