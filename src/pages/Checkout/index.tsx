@@ -13,10 +13,14 @@ import {
   OrderSummary,
 } from './styles'
 
-import american from '../../assets/american.png'
 import { Counter } from '../../components/Counter'
+import { useContext } from 'react'
+import { CartContext } from '../../contexts/CartContext'
+import { numberFormatter } from '../../utils/formatter'
 
 export function Checkout() {
+  const { cartItems } = useContext(CartContext)
+
   return (
     <MainContainer>
       <OrderDetails>
@@ -81,39 +85,24 @@ export function Checkout() {
         <h1>Cafés selecionados</h1>
 
         <div className="summary">
-          <div className="summary-order">
-            <img src={american} alt="" />
-            <div className="summary-info">
-              <p>Expresso Tradicional</p>
-              <div className="summary-action">
-                <Counter />
-                <button>
-                  <Trash size={16} />
-                  remover
-                </button>
+          {cartItems.map((item) => (
+            <div key={item.id} className="summary-order">
+              <img src={item.image} alt="" />
+              <div className="summary-info">
+                <p>{item.name}</p>
+                <div className="summary-action">
+                  <Counter quantity={item.quantity} />
+                  <button>
+                    <Trash size={16} />
+                    remover
+                  </button>
+                </div>
               </div>
+              <span>
+                <strong>R$ {numberFormatter.format(item.price)}</strong>
+              </span>
             </div>
-            <span>
-              <strong>R$ 9,90</strong>
-            </span>
-          </div>
-
-          <div className="summary-order">
-            <img src={american} alt="" />
-            <div className="summary-info">
-              <p>Expresso Tradicional</p>
-              <div className="summary-action">
-                <Counter />
-                <button>
-                  <Trash size={16} />
-                  remover
-                </button>
-              </div>
-            </div>
-            <span>
-              <strong>R$ 9,90</strong>
-            </span>
-          </div>
+          ))}
 
           <div className="summary-payment">
             <div>

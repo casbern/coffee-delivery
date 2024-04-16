@@ -36,7 +36,9 @@ export function Header() {
           <span>{`${userCity}, ${userCountryCode}`}</span>
         </Location>
 
-        <Cart />
+        <NavLink to={'/checkout'}>
+          <Cart />
+        </NavLink>
       </div>
     </HeaderContainer>
   )
