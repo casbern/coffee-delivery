@@ -8,7 +8,7 @@ import { api } from '../../lib/axios'
 import { useEffect, useState } from 'react'
 
 export interface ProductProps {
-  id?: number
+  id: number
   image: string
   tags: string[]
   name: string
@@ -70,6 +70,7 @@ export function Home() {
           {products.map((product: ProductProps) => (
             <Card
               key={product.id}
+              id={product.id}
               image={product.image}
               tags={product.tags}
               name={product.name}

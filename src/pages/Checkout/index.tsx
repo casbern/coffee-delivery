@@ -19,7 +19,16 @@ import { CartContext } from '../../contexts/CartContext'
 import { numberFormatter } from '../../utils/formatter'
 
 export function Checkout() {
-  const { cartItems } = useContext(CartContext)
+  const { cartItems, decreaseItemQuantity, increaseItemQuantity } =
+    useContext(CartContext)
+
+  function handleDecreaseQuantity(itemId: number) {
+    decreaseItemQuantity(itemId)
+  }
+
+  function handleIncreaseQuantity(itemId: number) {
+    increaseItemQuantity(itemId)
+  }
 
   return (
     <MainContainer>
@@ -91,7 +100,11 @@ export function Checkout() {
               <div className="summary-info">
                 <p>{item.name}</p>
                 <div className="summary-action">
-                  <Counter quantity={item.quantity} />
+                  <Counter
+                    decreaseQuantity={() => handleDecreaseQuantity(item.id)}
+                    increaseQuantity={() => handleIncreaseQuantity(item.id)}
+                    quantity={item.quantity}
+                  />
                   <button>
                     <Trash size={16} />
                     remover
@@ -99,7 +112,7 @@ export function Checkout() {
                 </div>
               </div>
               <span>
-                <strong>R$ {numberFormatter.format(item.price)}</strong>
+                <strong>R$ {numberFormatter.format(item.value)}</strong>
               </span>
             </div>
           ))}

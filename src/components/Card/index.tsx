@@ -16,14 +16,25 @@ export function Card({
   price,
 }: ProductProps) {
   const { setCartItems } = useContext(CartContext)
-  const [quantity, setQuantity] = useState<number>(0)
+  const [quantity, setQuantity] = useState(0)
 
-  function handleAddToCart() {
+  function handleDecreaseQuantity() {
+    if (quantity > 0) {
+      setQuantity((state) => state - 1)
+    }
+  }
+
+  function handleIncreaseQuantity() {
+    setQuantity((state) => state + 1)
+  }
+
+  function handleAddItem() {
     const cartItem: CartItemProps = {
       id,
       image,
       name,
       price,
+      value: price * quantity,
       quantity,
     }
 
@@ -49,8 +60,12 @@ export function Card({
         </span>
 
         <div className="actions">
-          <Counter setQuantity={setQuantity} quantity={quantity} />
-          <button onClick={handleAddToCart}>
+          <Counter
+            quantity={quantity}
+            decreaseQuantity={handleDecreaseQuantity}
+            increaseQuantity={handleIncreaseQuantity}
+          />
+          <button onClick={handleAddItem}>
             <ShoppingCart size={22} weight="fill" />
           </button>
         </div>
