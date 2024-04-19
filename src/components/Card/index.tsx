@@ -15,7 +15,7 @@ export function Card({
   description,
   price,
 }: ProductProps) {
-  const { setCartItems } = useContext(CartContext)
+  const { addItem } = useContext(CartContext)
   const [quantity, setQuantity] = useState(0)
 
   function handleDecreaseQuantity() {
@@ -38,7 +38,7 @@ export function Card({
       quantity,
     }
 
-    setCartItems((prevState) => [...prevState, cartItem])
+    addItem(cartItem)
   }
 
   return (

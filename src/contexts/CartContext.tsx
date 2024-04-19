@@ -16,6 +16,8 @@ interface CartContextType {
   ) => void
   decreaseItemQuantity: (id: number) => void
   increaseItemQuantity: (id: number) => void
+  removeItem: (id: number) => void
+  addItem: (item: CartItemProps) => void
 }
 
 interface CartContextProviderProps {
@@ -26,8 +28,6 @@ export const CartContext = createContext({} as CartContextType)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cartItems, setCartItems] = useState<CartItemProps[]>([])
-
-  function updateTotalItems() {}
 
   function decreaseItemQuantity(id: number) {
     const cartItemsUpdated = cartItems.map((item) => {
@@ -44,8 +44,37 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   }
 
   function increaseItemQuantity(id: number) {
-    console.log(id)
-    console.log('increase')
+    const cartItemsUpdated = cartItems.map((item) => {
+      if (item.id === id) {
+        item.quantity += 1
+        item.value = item.price * item.quantity
+      } else {
+        console.log(`Item with id ${id} not found`)
+      }
+      return item
+    })
+
+    setCartItems(cartItemsUpdated)
+  }
+
+  function removeItem(id: number) {
+    const updatedCart = cartItems.filter((item) => item.id !== id)
+    setCartItems(updatedCart)
+  }
+
+  function addItem(item: CartItemProps) {
+    const existingItem = cartItems.find((cartItem) => cartItem.id === item.id)
+
+    if (existingItem) {
+      const updatedCartItems = cartItems.map((cartItem) =>
+        cartItem.id === item.id
+          ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+          : cartItem,
+      )
+      setCartItems(updatedCartItems)
+    } else {
+      setCartItems((prevCartItems) => [...prevCartItems, item])
+    }
   }
 
   return (
@@ -55,6 +84,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         setCartItems,
         decreaseItemQuantity,
         increaseItemQuantity,
+        removeItem,
+        addItem,
       }}
     >
       {children}

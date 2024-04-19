@@ -19,7 +19,7 @@ import { CartContext } from '../../contexts/CartContext'
 import { numberFormatter } from '../../utils/formatter'
 
 export function Checkout() {
-  const { cartItems, decreaseItemQuantity, increaseItemQuantity } =
+  const { cartItems, decreaseItemQuantity, increaseItemQuantity, removeItem } =
     useContext(CartContext)
 
   function handleDecreaseQuantity(itemId: number) {
@@ -29,6 +29,15 @@ export function Checkout() {
   function handleIncreaseQuantity(itemId: number) {
     increaseItemQuantity(itemId)
   }
+
+  function handleItemRemove(itemId: number) {
+    removeItem(itemId)
+  }
+
+  const totalItemsPrice = cartItems.reduce((acc, cv) => {
+    return (acc += cv.price * cv.quantity)
+  }, 0)
+  const shippingPrice = totalItemsPrice * (5 / 100)
 
   return (
     <MainContainer>
@@ -105,7 +114,7 @@ export function Checkout() {
                     increaseQuantity={() => handleIncreaseQuantity(item.id)}
                     quantity={item.quantity}
                   />
-                  <button>
+                  <button onClick={() => handleItemRemove(item.id)}>
                     <Trash size={16} />
                     remover
                   </button>
@@ -120,17 +129,32 @@ export function Checkout() {
           <div className="summary-payment">
             <div>
               <span>Total de itens</span>
-              <span>R$ 29,70</span>
+              <span>
+                {new Intl.NumberFormat('pt-br', {
+                  currency: 'BRL',
+                  style: 'currency',
+                }).format(totalItemsPrice)}
+              </span>
             </div>
 
             <div>
               <span>Entrega</span>
-              <span>R$ 3,50</span>
+              <span>
+                {new Intl.NumberFormat('pt-br', {
+                  currency: 'BRL',
+                  style: 'currency',
+                }).format(shippingPrice)}
+              </span>
             </div>
 
             <div className="total">
               <span>Total</span>
-              <span>R$ 33,20</span>
+              <span>
+                {new Intl.NumberFormat('pt-br', {
+                  currency: 'BRL',
+                  style: 'currency',
+                }).format(totalItemsPrice + shippingPrice)}
+              </span>
             </div>
           </div>
 
