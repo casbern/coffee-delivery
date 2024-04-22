@@ -101,6 +101,11 @@ export const ProductItem = styled.div`
       background: ${(props) => props.theme['purple-dark']};
       color: ${(props) => props.theme.white};
       cursor: pointer;
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
     }
   }
 `

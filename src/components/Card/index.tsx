@@ -65,7 +65,7 @@ export function Card({
             decreaseQuantity={handleDecreaseQuantity}
             increaseQuantity={handleIncreaseQuantity}
           />
-          <button onClick={handleAddItem}>
+          <button onClick={handleAddItem} disabled={quantity === 0}>
             <ShoppingCart size={22} weight="fill" />
           </button>
         </div>
