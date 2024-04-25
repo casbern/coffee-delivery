@@ -6,21 +6,61 @@ import {
   Money,
   Trash,
 } from 'phosphor-react'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { z } from 'zod'
 import {
   MainContainer,
   OrderDetails,
   OrderDetailsHeader,
   OrderSummary,
+  Payment,
+  PaymentButton,
 } from './styles'
 
 import { Counter } from '../../components/Counter'
 import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 import { numberFormatter } from '../../utils/formatter'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+type FormInputs = {
+  cep: number
+  street: string
+  number: string
+  fullAddress: string
+  neighborhood: string
+  city: string
+  state: string
+  paymentMethod: 'credit' | 'debit' | 'cash'
+}
+
+const newOrder = z.object({
+  cep: z.number({ invalid_type_error: 'Informe o CEP' }),
+  street: z.string().min(1, 'Informe a rua'),
+  number: z.string().min(1, 'Informe o número'),
+  fullAddress: z.string(),
+  neighborhood: z.string().min(1, 'Informe o bairro'),
+  city: z.string().min(1, 'Informe a cidade'),
+  state: z.string().min(1, 'Informe a UF'),
+  paymentMethod: z.enum(['credit', 'debit', 'cash'], {
+    invalid_type_error: 'Informe um método de pagamento',
+  }),
+})
+
+export type OrderInfo = z.infer<typeof newOrder>
 
 export function Checkout() {
   const { cartItems, decreaseItemQuantity, increaseItemQuantity, removeItem } =
     useContext(CartContext)
+
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<FormInputs>({
+    resolver: zodResolver(newOrder),
+  })
 
   function handleDecreaseQuantity(itemId: number) {
     decreaseItemQuantity(itemId)
@@ -34,6 +74,16 @@ export function Checkout() {
     removeItem(itemId)
   }
 
+  const handleCreateNewOrder: SubmitHandler<FormInputs> = async (data) => {
+    console.log(data)
+
+    if (cartItems.length === 0) {
+      return alert('É preciso ter pelo menos um item no carrinho')
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+  }
+
   const totalItemsPrice = cartItems.reduce((acc, cv) => {
     return (acc += cv.price * cv.quantity)
   }, 0)
@@ -43,60 +93,102 @@ export function Checkout() {
     <MainContainer>
       <OrderDetails>
         <h1>Complete seu pedido</h1>
+        <form id="order" onSubmit={handleSubmit(handleCreateNewOrder)}>
+          <div className="order-address">
+            <OrderDetailsHeader>
+              <MapPinLine size={22} />
+              <div className="order-payment-header">
+                <p>Endereço de Entrega</p>
+                <p>Informe o endereço onde deseja receber seu pedido</p>
+              </div>
+            </OrderDetailsHeader>
 
-        <div className="order-address">
-          <OrderDetailsHeader>
-            <MapPinLine size={22} />
+            <input
+              type="number"
+              placeholder="CEP"
+              {...register('cep')}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Rua"
+              {...register('street')}
+              required
+            />
             <div>
-              <p>Endereço de Entrega</p>
-              <p>Informe o endereço onde deseja receber seu pedido</p>
+              <input
+                type="number"
+                placeholder="Número"
+                {...register('number')}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Complemento"
+                {...register('fullAddress')}
+              />
             </div>
-          </OrderDetailsHeader>
 
-          <form>
-            <input type="number" placeholder="CEP" />
-            <input type="text" placeholder="Rua" />
             <div>
-              <input type="number" placeholder="Número" />
-              <input type="text" placeholder="Complemento" />
+              <input
+                type="text"
+                placeholder="Bairro"
+                {...register('neighborhood')}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Cidade"
+                {...register('city')}
+                required
+              />
+              <input
+                type="text"
+                placeholder="UF"
+                {...register('state')}
+                required
+              />
             </div>
-
-            <div>
-              <input type="text" placeholder="Bairro" />
-              <input type="text" placeholder="Cidade" />
-              <input type="text" placeholder="UF" />
-            </div>
-          </form>
-        </div>
-
-        <div className="order-payment">
-          <OrderDetailsHeader>
-            <CurrencyDollar size={22} />
-            <div>
-              <p>Pagamento</p>
-              <p>
-                O pagamento é feito na entrega. Escolha a forma que deseja pagar
-              </p>
-            </div>
-          </OrderDetailsHeader>
-
-          <div className="payment-buttons">
-            <button type="submit">
-              <CreditCard size={16} />
-              cartão de crédito
-            </button>
-
-            <button type="submit">
-              <Bank size={16} />
-              cartão de débito
-            </button>
-
-            <button type="submit">
-              <Money size={16} />
-              dinheiro
-            </button>
           </div>
-        </div>
+
+          <div className="order-payment">
+            <OrderDetailsHeader>
+              <CurrencyDollar size={22} />
+              <div className="order-payment-header">
+                <p>Pagamento</p>
+                <p>
+                  O pagamento é feito na entrega. Escolha a forma que deseja
+                  pagar
+                </p>
+              </div>
+            </OrderDetailsHeader>
+
+            <Controller
+              control={control}
+              name="type"
+              render={({ field }) => {
+                return (
+                  <Payment onValueChange={field.onChange} value={field.value}>
+                    <PaymentButton value="credit">
+                      <CreditCard size={16} />
+                      cartão de crédito
+                    </PaymentButton>
+
+                    <PaymentButton value="debit">
+                      <Bank size={16} />
+                      cartão de débito
+                    </PaymentButton>
+
+                    <PaymentButton value="cash">
+                      <Money size={16} />
+                      dinheiro
+                    </PaymentButton>
+                  </Payment>
+                )
+              }}
+            />
+          </div>
+        </form>
       </OrderDetails>
 
       <OrderSummary>
@@ -158,7 +250,9 @@ export function Checkout() {
             </div>
           </div>
 
-          <button>confirmar pedido</button>
+          <button type="submit" form="order" disabled={isSubmitting}>
+            confirmar pedido
+          </button>
         </div>
       </OrderSummary>
     </MainContainer>

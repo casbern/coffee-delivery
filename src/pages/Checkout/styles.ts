@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 
 export const MainContainer = styled.main`
   display: flex;
@@ -15,18 +16,24 @@ export const OrderDetailsHeader = styled.header`
   display: flex;
   gap: 8px;
 
-  svg {
+  & svg {
     color: ${(props) => props.theme['yellow-dark']};
   }
 
-  div p:first-child {
+  .order-payment-header {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  & div p:first-child {
     color: ${(props) => props.theme['base-subtitle']};
     font-style: normal;
     font-weight: 400;
     line-height: 130%;
   }
 
-  div p:nth-child(2) {
+  & div p:nth-child(2) {
     color: ${(props) => props.theme['base-text']};
     font-size: 1.4rem;
     font-style: normal;
@@ -48,6 +55,46 @@ export const OrderDetails = styled.div`
     line-height: 130%;
   }
 
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    gap: 16px;
+
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input {
+      padding: 1.2rem;
+      border-radius: 4px;
+      border: 1px solid ${(props) => props.theme['base-button']};
+      background: ${(props) => props.theme['base-input']};
+      width: 100%;
+
+      &::placeholder {
+        color: ${(props) => props.theme['base-label']};
+        font-size: 1.4rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 130%;
+      }
+
+      &[placeholder='CEP'] {
+        width: 200px;
+      }
+    }
+
+    & div {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+    }
+  }
+
   .order-address {
     display: flex;
     flex-direction: column;
@@ -58,40 +105,6 @@ export const OrderDetails = styled.div`
 
     border-radius: 6px;
     background: ${(props) => props.theme['base-card']};
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      align-self: stretch;
-      gap: 16px;
-
-      input {
-        padding: 1.2rem;
-        border-radius: 4px;
-        border: 1px solid ${(props) => props.theme['base-button']};
-        background: ${(props) => props.theme['base-input']};
-        width: 100%;
-
-        &::placeholder {
-          color: ${(props) => props.theme['base-label']};
-          font-size: 1.4rem;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 130%;
-        }
-
-        &[placeholder='CEP'] {
-          width: 200px;
-        }
-      }
-
-      div {
-        display: flex;
-        gap: 12px;
-        width: 100%;
-      }
-    }
   }
 
   .order-payment {
@@ -105,46 +118,51 @@ export const OrderDetails = styled.div`
     border-radius: 6px;
     background: ${(props) => props.theme['base-card']};
   }
+`
 
-  .payment-buttons {
-    display: flex;
-    align-items: center;
-    align-self: stretch;
-    gap: 12px;
+export const Payment = styled(RadioGroup.Root)`
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  gap: 12px;
 
-    @media (max-width: 425px) {
-      width: 100%;
-      flex-direction: column;
-    }
+  @media (max-width: 425px) {
+    width: 100%;
+    flex-direction: column;
+  }
+`
 
-    button {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 1.6rem;
-      width: 100%;
+export const PaymentButton = styled(RadioGroup.Item)`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1.6rem;
+  width: 100%;
 
-      color: ${(props) => props.theme['base-text']};
-      font-size: 1.2rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 160%;
-      text-transform: uppercase;
+  color: ${(props) => props.theme['base-text']};
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
+  text-transform: uppercase;
 
-      border: 1px solid ${(props) => props.theme['base-button']};
-      border-radius: 6px;
-      background: ${(props) => props.theme['base-button']};
-      cursor: pointer;
+  border: 1px solid ${(props) => props.theme['base-button']};
+  border-radius: 6px;
+  background: ${(props) => props.theme['base-button']};
+  cursor: pointer;
 
-      &:hover {
-        border: 1px solid ${(props) => props.theme.purple};
-        background: ${(props) => props.theme['purple-light']};
-      }
+  &:hover {
+    border: 1px solid ${(props) => props.theme.purple};
+    background: ${(props) => props.theme['purple-light']};
+  }
 
-      svg {
-        color: ${(props) => props.theme.purple};
-      }
-    }
+  svg {
+    color: ${(props) => props.theme.purple};
+  }
+
+  &[data-state='checked'] {
+    background: ${(props) => props.theme['purple-light']};
+    border: 1px solid ${(props) => props.theme['purple-dark']};
   }
 `
 
@@ -290,7 +308,7 @@ export const OrderSummary = styled.div`
     }
   }
 
-  button {
+  button[type='submit'] {
     display: flex;
     justify-content: center;
     align-content: center;
@@ -313,6 +331,11 @@ export const OrderSummary = styled.div`
     &:hover {
       background: ${(props) => props.theme['yellow-dark']};
       transition: background-color 0.2s;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
   }
 `
