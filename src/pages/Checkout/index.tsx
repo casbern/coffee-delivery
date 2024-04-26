@@ -8,6 +8,7 @@ import {
 } from 'phosphor-react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { toast } from 'sonner'
 import {
   MainContainer,
   OrderDetails,
@@ -78,7 +79,7 @@ export function Checkout() {
     console.log(data)
 
     if (cartItems.length === 0) {
-      return alert('É preciso ter pelo menos um item no carrinho')
+      toast.error('É preciso ter pelo menos um item no carrinho')
     }
 
     await new Promise((resolve) => setTimeout(resolve, 2000))
@@ -106,7 +107,7 @@ export function Checkout() {
             <input
               type="number"
               placeholder="CEP"
-              {...register('cep')}
+              {...register('cep', { valueAsNumber: true })}
               required
             />
             <input
@@ -165,7 +166,7 @@ export function Checkout() {
 
             <Controller
               control={control}
-              name="type"
+              name="paymentMethod"
               render={({ field }) => {
                 return (
                   <Payment onValueChange={field.onChange} value={field.value}>

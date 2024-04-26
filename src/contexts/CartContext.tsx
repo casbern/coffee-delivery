@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useState } from 'react'
+import { toast } from 'sonner'
 
 export interface CartItemProps {
   id: number
@@ -35,7 +36,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         item.quantity -= 1
         item.value = item.price * item.quantity
       } else {
-        console.log(`Item with id ${id} not found or quantity is already 0`)
+        toast.error('Café não encontrado e/ou igual a zero no carrinho')
       }
       return item
     })
@@ -49,7 +50,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         item.quantity += 1
         item.value = item.price * item.quantity
       } else {
-        console.log(`Item with id ${id} not found`)
+        toast.error('Café não encontrado e/ou igual a zero no carrinho')
       }
       return item
     })
@@ -60,6 +61,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   function removeItem(id: number) {
     const updatedCart = cartItems.filter((item) => item.id !== id)
     setCartItems(updatedCart)
+    toast.success('Café removido')
   }
 
   function addItem(item: CartItemProps) {
@@ -75,6 +77,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     } else {
       setCartItems((prevCartItems) => [...prevCartItems, item])
     }
+
+    toast.success('Café adicionado ao carrinho')
   }
 
   return (
