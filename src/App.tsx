@@ -12,7 +12,7 @@ export function App() {
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <CartContextProvider>
-          <Toaster position="top-right" richColors expand={true} closeButton />
+          <Toaster position="top-right" richColors expand={true} />
           <Router />
         </CartContextProvider>
         <GlobalStyle />
