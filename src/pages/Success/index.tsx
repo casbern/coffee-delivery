@@ -2,8 +2,14 @@ import { CurrencyDollar, MapPinLine, Timer } from 'phosphor-react'
 import { MainContainer, OrderDetails } from './styles'
 
 import image from '../../assets/confirmation-order-image.png'
+import { useContext } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 
 export function Success() {
+  const { order } = useContext(CartContext)
+
+  console.log('order', order)
+
   return (
     <MainContainer>
       <div className="order-confirmation">
@@ -15,9 +21,9 @@ export function Success() {
             <MapPinLine size={16} weight="fill" />
             <div>
               <p>
-                Entrega em <strong>Rua Jõao Daniel Martinelli, 102</strong>
+                Entrega em <strong>{`${order.street}, ${order.number}`}</strong>
               </p>
-              <p>Farrapos - Porto Alegre, RS</p>
+              <p>{`${order.neighborhood} - ${order.city}, ${order.state}`}</p>
             </div>
           </OrderDetails>
 
@@ -36,7 +42,7 @@ export function Success() {
             <div>
               <p>Pagamento na entrega</p>
               <p>
-                <strong>Cartão de Crédito</strong>
+                <strong>{order.paymentMethod}</strong>
               </p>
             </div>
           </OrderDetails>

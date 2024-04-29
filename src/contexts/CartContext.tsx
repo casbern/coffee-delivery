@@ -1,5 +1,7 @@
 import { ReactNode, createContext, useState } from 'react'
 import { toast } from 'sonner'
+import { OrderInfo } from '../pages/Checkout'
+import { useNavigate } from 'react-router-dom'
 
 export interface CartItemProps {
   id: number
@@ -12,13 +14,12 @@ export interface CartItemProps {
 
 interface CartContextType {
   cartItems: CartItemProps[]
-  setCartItems: (
-    callback: (prevItems: CartItemProps[]) => CartItemProps[],
-  ) => void
+  order: OrderInfo | undefined
   decreaseItemQuantity: (id: number) => void
   increaseItemQuantity: (id: number) => void
-  removeItem: (id: number) => void
   addItem: (item: CartItemProps) => void
+  removeItem: (id: number) => void
+  checkout: (data: OrderInfo) => void
 }
 
 interface CartContextProviderProps {
@@ -29,6 +30,9 @@ export const CartContext = createContext({} as CartContextType)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cartItems, setCartItems] = useState<CartItemProps[]>([])
+  const [order, setOrder] = useState<OrderInfo | undefined>(undefined)
+
+  const navigate = useNavigate()
 
   function decreaseItemQuantity(id: number) {
     const cartItemsUpdated = cartItems.map((item) => {
@@ -81,15 +85,23 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     toast.success('Café adicionado ao carrinho')
   }
 
+  function checkout(data: OrderInfo) {
+    console.log(data)
+
+    setOrder(data)
+    navigate('/success')
+  }
+
   return (
     <CartContext.Provider
       value={{
         cartItems,
-        setCartItems,
+        order,
         decreaseItemQuantity,
         increaseItemQuantity,
         removeItem,
         addItem,
+        checkout,
       }}
     >
       {children}

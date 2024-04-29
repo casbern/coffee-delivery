@@ -51,8 +51,13 @@ const newOrder = z.object({
 export type OrderInfo = z.infer<typeof newOrder>
 
 export function Checkout() {
-  const { cartItems, decreaseItemQuantity, increaseItemQuantity, removeItem } =
-    useContext(CartContext)
+  const {
+    cartItems,
+    decreaseItemQuantity,
+    increaseItemQuantity,
+    removeItem,
+    checkout,
+  } = useContext(CartContext)
 
   const {
     control,
@@ -75,20 +80,20 @@ export function Checkout() {
     removeItem(itemId)
   }
 
-  const handleCreateNewOrder: SubmitHandler<FormInputs> = async (data) => {
-    console.log(data)
+  const totalItemsPrice = cartItems.reduce((acc, cv) => {
+    return (acc += cv.price * cv.quantity)
+  }, 0)
+  const shippingPrice = totalItemsPrice * (5 / 100)
+
+  const handleCreateNewOrder: SubmitHandler<OrderInfo> = (data) => {
+    console.log('botão foi apertado')
 
     if (cartItems.length === 0) {
       toast.error('É preciso ter pelo menos um item no carrinho')
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    checkout(data)
   }
-
-  const totalItemsPrice = cartItems.reduce((acc, cv) => {
-    return (acc += cv.price * cv.quantity)
-  }, 0)
-  const shippingPrice = totalItemsPrice * (5 / 100)
 
   return (
     <MainContainer>
@@ -170,17 +175,17 @@ export function Checkout() {
               render={({ field }) => {
                 return (
                   <Payment onValueChange={field.onChange} value={field.value}>
-                    <PaymentButton value="credit">
+                    <PaymentButton value="Credit">
                       <CreditCard size={16} />
                       cartão de crédito
                     </PaymentButton>
 
-                    <PaymentButton value="debit">
+                    <PaymentButton value="Debit">
                       <Bank size={16} />
                       cartão de débito
                     </PaymentButton>
 
-                    <PaymentButton value="cash">
+                    <PaymentButton value="Cash">
                       <Money size={16} />
                       dinheiro
                     </PaymentButton>
