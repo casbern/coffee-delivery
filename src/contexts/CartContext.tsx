@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { OrderInfo } from '../pages/Checkout'
 import { useNavigate } from 'react-router-dom'
@@ -31,6 +31,12 @@ export const CartContext = createContext({} as CartContextType)
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cartItems, setCartItems] = useState<CartItemProps[]>([])
   const [order, setOrder] = useState<OrderInfo | undefined>(undefined)
+
+  useEffect(() => {
+    const cartState = { cartItems, order }
+    const stateJSON = JSON.stringify(cartState)
+    localStorage.setItem('@coffee-delivery:cart-state', stateJSON)
+  }, [cartItems, order])
 
   const navigate = useNavigate()
 
@@ -89,6 +95,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     console.log(data)
 
     setOrder(data)
+    setCartItems([])
     navigate('/success')
   }
 

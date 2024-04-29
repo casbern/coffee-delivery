@@ -3,9 +3,10 @@ import heroImage from '../../assets/heroImage.png'
 
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { Card } from '../../components/Card'
+import { products } from '../../../server.json'
 
-import { api } from '../../lib/axios'
-import { useEffect, useState } from 'react'
+// import { api } from '../../lib/axios'
+// import { useEffect, useState } from 'react'
 
 export interface ProductProps {
   id: number
@@ -17,16 +18,16 @@ export interface ProductProps {
 }
 
 export function Home() {
-  const [products, setProducts] = useState([])
+  // const [products, setProducts] = useState([])
 
-  async function getAllProducts() {
-    const response = await api.get('/products')
-    setProducts(response.data)
-  }
+  // async function getAllProducts() {
+  //   const response = await api.get('/products')
+  //   setProducts(response.data)
+  // }
 
-  useEffect(() => {
-    getAllProducts()
-  }, [])
+  // useEffect(() => {
+  //   getAllProducts()
+  // }, [])
 
   return (
     <>
