@@ -21,9 +21,10 @@ export function Success() {
             <MapPinLine size={16} weight="fill" />
             <div>
               <p>
-                Entrega em <strong>{`${order.street}, ${order.number}`}</strong>
+                Entrega em{' '}
+                <strong>{`${order!.street}, ${order!.number}`}</strong>
               </p>
-              <p>{`${order.neighborhood} - ${order.city}, ${order.state}`}</p>
+              <p>{`${order!.neighborhood} - ${order!.city}, ${order!.state}`}</p>
             </div>
           </OrderDetails>
 
@@ -42,7 +43,7 @@ export function Success() {
             <div>
               <p>Pagamento na entrega</p>
               <p>
-                <strong>{order.paymentMethod}</strong>
+                <strong>{order!.paymentMethod}</strong>
               </p>
             </div>
           </OrderDetails>
