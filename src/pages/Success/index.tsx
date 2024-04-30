@@ -1,7 +1,7 @@
 import { CurrencyDollar, MapPinLine, Timer } from 'phosphor-react'
 import { MainContainer, OrderDetails } from './styles'
 
-import image from '../../assets/confirmation-order-image.png'
+import image from '../../../public/images/confirmation-order-image.png'
 import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 

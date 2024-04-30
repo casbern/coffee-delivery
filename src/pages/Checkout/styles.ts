@@ -47,6 +47,12 @@ export const OrderDetails = styled.div`
   flex-direction: column;
   gap: 12px;
 
+  .error-message {
+    color: ${(props) => props.theme.red};
+    display: flex;
+    flex-direction: column;
+  }
+
   h1 {
     font-family: 'Balooo 2', sans-serif;
     font-size: 1.8rem;

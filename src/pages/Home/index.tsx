@@ -1,5 +1,5 @@
 import { HeroContainer, HeroTag, MainContainer } from './styles'
-import heroImage from '../../assets/heroImage.png'
+import heroImage from '../../../public/images/heroImage.png'
 
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { Card } from '../../components/Card'

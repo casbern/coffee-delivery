@@ -1,4 +1,4 @@
-import logo from '../../assets/logo.svg'
+import logo from '../../../public/images/logo.svg'
 import { MapPin } from 'phosphor-react'
 import { HeaderContainer, Location } from './styles'
 

@@ -63,7 +63,7 @@ export function Checkout() {
     control,
     register,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm<FormInputs>({
     resolver: zodResolver(newOrder),
   })
@@ -90,9 +90,9 @@ export function Checkout() {
 
     if (cartItems.length === 0) {
       toast.error('É preciso ter pelo menos um item no carrinho')
+    } else {
+      checkout(data)
     }
-
-    checkout(data)
   }
 
   return (
@@ -109,51 +109,70 @@ export function Checkout() {
               </div>
             </OrderDetailsHeader>
 
-            <input
-              type="number"
-              placeholder="CEP"
-              {...register('cep', { valueAsNumber: true })}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Rua"
-              {...register('street')}
-              required
-            />
-            <div>
+            <div className="error-message">
               <input
                 type="number"
-                placeholder="Número"
-                {...register('number')}
-                required
+                placeholder="CEP"
+                {...register('cep', { valueAsNumber: true })}
               />
-              <input
-                type="text"
-                placeholder="Complemento"
-                {...register('fullAddress')}
-              />
+              {errors.cep?.message && <p>{errors.cep?.message}</p>}
+            </div>
+
+            <div className="error-message">
+              <input type="text" placeholder="Rua" {...register('street')} />
+              {errors.street?.message && (
+                <p className="error-message">{errors.street?.message}</p>
+              )}
             </div>
 
             <div>
-              <input
-                type="text"
-                placeholder="Bairro"
-                {...register('neighborhood')}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Cidade"
-                {...register('city')}
-                required
-              />
-              <input
-                type="text"
-                placeholder="UF"
-                {...register('state')}
-                required
-              />
+              <div className="error-message">
+                <input
+                  type="number"
+                  placeholder="Número"
+                  {...register('number')}
+                />
+                {errors.number?.message && (
+                  <p className="error-message">{errors.number?.message}</p>
+                )}
+              </div>
+
+              <div className="error-message">
+                <input
+                  type="text"
+                  placeholder="Complemento"
+                  {...register('fullAddress')}
+                />
+              </div>
+            </div>
+
+            <div>
+              <div className="error-message">
+                <input
+                  type="text"
+                  placeholder="Bairro"
+                  {...register('neighborhood')}
+                />
+                {errors.neighborhood?.message && (
+                  <p className="error-message">
+                    {errors.neighborhood?.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="error-message">
+                <input type="text" placeholder="Cidade" {...register('city')} />
+                {errors.city?.message && (
+                  <p className="error-message">{errors.city?.message}</p>
+                )}
+              </div>
+
+              <div className="error-message">
+                <input type="text" placeholder="UF" {...register('state')} />
+                {errors.state?.message && (
+                  <p className="error-message">{errors.state?.message}</p>
+                )}
+              </div>
             </div>
           </div>
 
@@ -169,30 +188,35 @@ export function Checkout() {
               </div>
             </OrderDetailsHeader>
 
-            <Controller
-              control={control}
-              name="paymentMethod"
-              render={({ field }) => {
-                return (
-                  <Payment onValueChange={field.onChange} value={field.value}>
-                    <PaymentButton value="Credit">
-                      <CreditCard size={16} />
-                      cartão de crédito
-                    </PaymentButton>
+            <div className="error-message">
+              <Controller
+                control={control}
+                name="paymentMethod"
+                render={({ field }) => {
+                  return (
+                    <Payment onValueChange={field.onChange} value={field.value}>
+                      <PaymentButton value="credit">
+                        <CreditCard size={16} />
+                        cartão de crédito
+                      </PaymentButton>
 
-                    <PaymentButton value="Debit">
-                      <Bank size={16} />
-                      cartão de débito
-                    </PaymentButton>
+                      <PaymentButton value="debit">
+                        <Bank size={16} />
+                        cartão de débito
+                      </PaymentButton>
 
-                    <PaymentButton value="Cash">
-                      <Money size={16} />
-                      dinheiro
-                    </PaymentButton>
-                  </Payment>
-                )
-              }}
-            />
+                      <PaymentButton value="cash">
+                        <Money size={16} />
+                        dinheiro
+                      </PaymentButton>
+                    </Payment>
+                  )
+                }}
+              />
+              {errors.paymentMethod?.message && (
+                <p className="error-message">{errors.paymentMethod?.message}</p>
+              )}
+            </div>
           </div>
         </form>
       </OrderDetails>
