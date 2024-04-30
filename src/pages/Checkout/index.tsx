@@ -86,8 +86,6 @@ export function Checkout() {
   const shippingPrice = totalItemsPrice * (5 / 100)
 
   const handleCreateNewOrder: SubmitHandler<OrderInfo> = (data) => {
-    console.log('botão foi apertado')
-
     if (cartItems.length === 0) {
       toast.error('É preciso ter pelo menos um item no carrinho')
     } else {

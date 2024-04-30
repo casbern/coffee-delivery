@@ -45,8 +45,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       if (item.id === id && item.quantity > 0) {
         item.quantity -= 1
         item.value = item.price * item.quantity
-      } else {
-        toast.error('Café não encontrado e/ou igual a zero no carrinho')
+      }
+
+      if (item.id === id && item.quantity === 0) {
+        toast.error('Valor desse café no carrinho é zero')
       }
       return item
     })
@@ -59,9 +61,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       if (item.id === id) {
         item.quantity += 1
         item.value = item.price * item.quantity
-      } else {
-        toast.error('Café não encontrado e/ou igual a zero no carrinho')
       }
+
       return item
     })
 
