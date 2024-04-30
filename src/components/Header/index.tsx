@@ -31,10 +31,17 @@ export function Header() {
       </NavLink>
 
       <div className="actions">
-        <Location>
-          <MapPin size={22} weight="fill" />
-          <span>{`${userCity}, ${userCountryCode}`}</span>
-        </Location>
+        {userCity && userCountryCode ? (
+          <Location>
+            <MapPin size={22} weight="fill" />
+            <span>{`${userCity}, ${userCountryCode}`}</span>
+          </Location>
+        ) : (
+          <Location>
+            <MapPin size={22} weight="fill" />
+            <span>São Paulo, SP</span>
+          </Location>
+        )}
 
         <NavLink to={'/checkout'}>
           <Cart />
